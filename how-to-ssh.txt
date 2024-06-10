@@ -1,0 +1,45 @@
+Let's try generating the SSH key pair again and ensure it is saved in the correct location:
+Open a terminal on your Linux system.Run the following command to generate a new SSH key:
+
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+Replace "your_email@example.com" with your email address associated with your GitHub account.
+
+Go to your GitHub account settings:
+
+    Click on "SSH and GPG keys."
+    Click on "New SSH key" or "Add SSH key."
+    Paste the copied public key into the "Key" field.
+    Give your key a descriptive title.
+    Click "Add SSH key."
+
+# Could not open a connection to your authentication agent.
+eval "$(ssh-agent -s)"
+
+# Add SSH Key to SSH Agent:
+ssh-add ~/.ssh/id_rsa
+Replace ~/.ssh/id_rsa with the path to your private key if it's located elsewhere.
+
+# error: src refspec main does not match any
+likely because the branch hasn't been created or doesn't exist locally.
+
+# You've successfully authenticated, but GitHub does not provide shell access
+This message is expected and does not indicate an error. It simply means that your SSH connection was authenticated, but GitHub doesn't allow interactive shell access over SSH.
+
+Permissions on SSH Files:
+Ensure that the permissions on your SSH files (id_rsa and id_rsa.pub) are set correctly. They should only be readable and writable by you:
+chmod 600 ~/.ssh/id_rsa
+chmod 644 ~/.ssh/id_rsa.pub
+
+ssh url set :
+git remote set-url origin git@github.com:username/repository.git
+
+Test your SSH connection to GitHub directly using the ssh command:
+ssh -T git@github.com
+
+Verify SSH Agent:
+If you're using an SSH agent, make sure your SSH key is added to the agent:
+ssh-add -l
+
+If your key is not listed, add it to the agent:
+ssh-add ~/.ssh/id_rsa
+
