@@ -43,3 +43,31 @@ ssh-add -l
 If your key is not listed, add it to the agent:
 ssh-add ~/.ssh/id_rsa
 
+! [rejected]        master -> master (fetch first)
+error: failed to push some refs
+
+The error message "! [rejected] master -> master (fetch first)" indicates that the remote repository contains commits that you don't have locally, and Git is rejecting the push to prevent you from overwriting commits on the remote repository
+
+git fetch origin
+git merge origin/master
+git commit -m "Merge remote-tracking branch 'origin/master'"
+git push origin master
+
+
+If you've set the upstream branch for your local branch to master, you can use git fetch followed by git merge to fetch and integrate changes from the remote master branch into your local master branch.
+git fetch
+git merge
+git pull - you can use git pull, which combines the git fetch and git merge commands into a single command
+
+fatal: Need to specify how to reconcile divergent branches.
+The error message "fatal: Need to specify how to reconcile divergent branches" occurs when Git encounters divergent changes between your local branch and the remote branch, and it's not sure how to reconcile those differences automatically.
+
+You can specify a merge strategy to reconcile the divergent branches. For example, you can choose to perform a merge commit or rebase your changes onto the remote branch.
+git pull origin master --no-rebase #to perform a merge commit
+To rebase your changes onto the remote branch:
+git pull --rebase origin master
+
+If you want to discard your local changes and make your local branch identical to the remote branch, you can reset your branch to the remote branch's state:
+git reset --hard origin/master
+This command will reset your local master branch to match the master branch on the remote repository. Be cautious with this command as it will discard any local changes that haven't been committed.
+
