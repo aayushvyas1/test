@@ -1,0 +1,53 @@
+Open Command Prompt or PowerShell: Ensure you are running it with administrative privileges if needed.
+
+Generate a New GPG Key: Enter the following command:
+    gpg --full-generate-key
+
+Please select what kind of key you want:
+   (1) RSA and RSA (default)
+   (2) DSA and Elgamal
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+Choose option 1 (RSA and RSA), which is the default option. Just press Enter to select it.
+
+Select Key Size
+Type 4096 and press Enter to select the maximum size for better security.
+
+Set Key Expiration
+
+Confirm Expiration
+
+Enter User Information
+Optionally, enter a comment or leave it blank and press Enter.
+
+Confirm Information
+
+Set a Passphrase
+
+Wait for Key Generation
+
+List Your Secret Keys:
+    gpg --list-secret-keys --keyid-format LONG
+
+
+Export Your GPG Key:
+    gpg --armor --export ABCDEF1234567890
+
+Add the GPG Key to GitHub
+
+    Go to GitHub and navigate to Settings.
+    In the left sidebar, click SSH and GPG keys.
+    Click New GPG key.
+    Paste the GPG key you copied earlier into the text box.
+    Click Add GPG key.
+
+git config --global user.signingkey ABCDEF1234567890
+git config --global commit.gpgSign true
+git commit -m "Your commit message"
+git commit -S -m "Your commit message" #Git to sign all commits, each commit will now be signed automatically
+
+
+Configure GPG for Git on Windows
+    git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"
+
+
