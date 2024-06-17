@@ -1,0 +1,46 @@
+# ---- 💫 https://github.com/JaKooLit 💫 ----
+# Hypridle Configuration
+# Original config submitted by https://github.com/SherLock707
+
+general {
+    lock_cmd = pidof hyprlock || hyprlock # Runs hyprlock if it is not already running
+    # unlock_cmd = killall hyprlock # Uncomment to kill hyprlock when unlocking
+    before_sleep_cmd = loginctl lock-session # Locks the session before going to sleep
+    after_sleep_cmd = hyprctl dispatch dpms on # Turns on the screen after sleep
+    ignore_dbus_inhibit = false # Whether to ignore dbus-sent idle-inhibit requests
+}
+
+# Turn off screen faster if session is already locked (disabled by default)
+# listener {
+#     timeout = 30 # Timeout in seconds
+#     on-timeout = pidof hyprlock && hyprctl dispatch dpms off # Turns off the screen if hyprlock is active
+#     on-resume = pidof hyprlock && hyprctl dispatch dpms on # Turns on the screen when activity is detected
+# }
+
+# Warn when idle
+listener {
+    timeout = 540 # Timeout in seconds (9 minutes)
+    on-timeout = notify-send "You are idle!" # Notify when timeout has passed
+    on-resume = notify-send "Welcome back!" # Notify when activity is detected after timeout
+}
+
+# Screenlock
+listener {
+    timeout = 600 # Timeout in seconds (10 minutes)
+    on-timeout = loginctl lock-session # Lock the session when timeout has passed
+    # on-resume = notify-send "Welcome back to your desktop!" # Uncomment to notify on resume
+}
+
+# Turn off screen (disabled by default)
+# listener {
+#     timeout = 630 # Timeout in seconds (10.5 minutes)
+#     on-timeout = hyprctl dispatch dpms off # Turns off the screen when timeout has passed
+#     on-resume = hyprctl dispatch dpms on # Turns on the screen when activity is detected
+# }
+
+# Suspend after idle (disabled by default)
+# listener {
+#     timeout = 1200 # Timeout in seconds (20 minutes)
+#     on-timeout = systemctl suspend # Suspends the system when timeout has passed
+#     # on-resume = notify-send "Welcome back to your desktop!" # Uncomment to notify on resume
+# }
