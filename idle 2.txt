@@ -12,6 +12,7 @@ general {
 }
 
 # turn off screen faster if session is already locked
+
 # (disabled by default)
 # listener {
 #     timeout = 30                            # 30 seconds
