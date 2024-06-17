@@ -3,6 +3,7 @@
 # Original config submitted by https://github.com/SherLock707
 
 general {
+    
     lock_cmd = pidof hyprlock || hyprlock # Runs hyprlock if it is not already running
     # unlock_cmd = killall hyprlock # Uncomment to kill hyprlock when unlocking
     before_sleep_cmd = loginctl lock-session # Locks the session before going to sleep
